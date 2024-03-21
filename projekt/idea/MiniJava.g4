@@ -1,6 +1,6 @@
 grammar MiniJava;
 
-prog:   (declaration | statement)* ;
+prog:   (declaration | statement | function | function_call)* ;
 
 
 LPAREN     : '(';
@@ -43,6 +43,7 @@ BOOL    : 'true' | 'false';
 FLOAT   : ('0' '.' [0-9]+ | [1-9][0-9]* '.' [0-9]*) | ('0' '.' [0-9]*);
 CHAR    : '\''[a-zA-Z0-9]'\'';
 VARIABLE : [a-zA-Z]+;
+TYPES : 'int'|'string'|'boolean'|'float'|'char';
 
 declaration
     : 'int' VARIABLE ASSIGN INT SEMICOLON
@@ -109,3 +110,6 @@ expression
     |   STRING
     |   FLOAT
     ;
+
+function : VARIABLE '(' (TYPES VARIABLE)* ')' '{' (expression|statement|'return' VARIABLE|INT|STRING|CHAR|FLOAT SEMICOLON)* '}';
+function_call : VARIABLE '(' (TYPES VARIABLE)* ')' SEMICOLON;
