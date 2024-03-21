@@ -49,18 +49,30 @@ declaration
     | 'float' VARIABLE ASSIGN FLOAT SEMICOLON
     | 'string' VARIABLE ASSIGN STRING SEMICOLON
     | 'bool' VARIABLE ASSIGN BOOL SEMICOLON
-    | 'char'
+    | 'char' VARIABLE ASSIGN CHAR SEMICOLON
+    | 'int' VARIABLE SEMICOLON
+    | 'float' VARIABLE SEMICOLON
+    | 'string' VARIABLE SEMICOLON
+    | 'bool' VARIABLE SEMICOLON
+    | 'char' VARIABLE SEMICOLON
+    | 'int' VARIABLE ASSIGN 'input' '(' printable')' SEMICOLON
+    | 'float' VARIABLE ASSIGN 'input' '(' printable')' SEMICOLON
+    | 'string' VARIABLE ASSIGN 'input' '(' printable')' SEMICOLON
+    | 'bool' VARIABLE ASSIGN 'input' '(' printable')' SEMICOLON
+    | 'char' VARIABLE ASSIGN 'input' '(' printable')' SEMICOLON
     ;
 
 statement
     :   '{' (statement)* '}'
     |   'if' '(' expression ')' statement ('else if' '(' expression')' statement)* ('else' statement)?
     |   'while' '(' expression ')' statement
-    |   'for' '(' declaration VARIABLE '=' INT SEMICOLON expression SEMICOLON VARIABLE INC ')' statement
+    |   'for' '(' declaration expression SEMICOLON VARIABLE INC ')' statement
     |   VARIABLE '=' expression ';'
     |   expression ';'
     |   'return' expression ';'
-    |   'print' '(' printable ')' ';'
+    |   'print' '(' printable ')' SEMICOLON
+    |   VARIABLE ASSIGN 'input' '(' printable ')' SEMICOLON
+    |    'input' '(' printable ')' SEMICOLON
     ;
 
 printable
@@ -82,7 +94,7 @@ expression
     |   expression '*'  expression
     |   expression '/'  expression
     |   expression '%'  expression
-    |   expression '<'  expression
+    |   expression '<' expression
     |   expression '&&' expression
     |   expression '==' expression
     |   expression '>' expression
