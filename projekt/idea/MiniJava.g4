@@ -43,7 +43,6 @@ BOOL    : 'true' | 'false';
 FLOAT   : ('0' '.' [0-9]+ | [1-9][0-9]* '.' [0-9]*) | ('0' '.' [0-9]*);
 CHAR    : '\''[a-zA-Z0-9]'\'';
 VARIABLE : [a-zA-Z]+;
-TYPES : 'int'|'string'|'boolean'|'float'|'char';
 
 declaration
     : 'int' VARIABLE ASSIGN INT SEMICOLON
@@ -111,5 +110,5 @@ expression
     |   FLOAT
     ;
 
-function : VARIABLE '(' (TYPES VARIABLE)* ')' '{' (expression|statement|'return' VARIABLE|INT|STRING|CHAR|FLOAT SEMICOLON)* '}';
+function : VARIABLE '(' (('int'|'string'|'boolean'|'float'|'char') VARIABLE)* ')' '{' (expression|statement|'return' VARIABLE|INT|STRING|CHAR|FLOAT SEMICOLON)* '}';
 function_call : VARIABLE '(' (TYPES VARIABLE)* ')' SEMICOLON;
