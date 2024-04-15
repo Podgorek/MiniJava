@@ -78,8 +78,7 @@ class MyVisitor(MiniJavaVisitor):
 
     # Visit a parse tree produced by MiniJavaParser#printFloat.
     def visitPrintFloat(self, ctx:MiniJavaParser.PrintFloatContext):
-        return self.visitChildren(ctx)
-
+        print(float(ctx.getText()))
 
     # Visit a parse tree produced by MiniJavaParser#printArithmetics.
     def visitPrintArithmetics(self, ctx:MiniJavaParser.PrintArithmeticsContext):
@@ -93,4 +92,4 @@ class MyVisitor(MiniJavaVisitor):
 
     # Visit a parse tree produced by MiniJavaParser#printChar.
     def visitPrintChar(self, ctx:MiniJavaParser.PrintCharContext):
-        return self.visitChildren(ctx)
+        print(ctx.CHAR())

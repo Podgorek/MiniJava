@@ -1,1 +1,1 @@
-print(!(false && (true || true)));
+print(5);
