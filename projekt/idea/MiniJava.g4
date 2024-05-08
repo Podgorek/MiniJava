@@ -1,6 +1,7 @@
 grammar MiniJava;
 
-prog:   (arithmetics | print | logical | declaration | conditionals | assignments)* ;
+prog:   (arithmetics | print | logical | declaration | conditionals | assignments | forloop)* ;
+
 
 LPAREN     : '(';
 RPAREN     : ')';
@@ -38,20 +39,33 @@ IF             : 'if';
 WS: [ \t\r\n]+ -> skip;
 
 INT     : [0-9]+;
-STRING  : '"'[a-zA-Z0-9_ ]+'"';
+STRING  : '"'[a-zA-Z0-9_ =]+'"';
 BOOL    : 'true' | 'false';
 FLOAT   : ('0' '.' [0-9]+ | [1-9][0-9]* '.' [0-9]*) | ('0' '.' [0-9]*);
 CHAR    : '\''[a-zA-Z0-9]'\'';
 VARIABLE : [a-zA-Z]+;
 
-
-assignments
-    : VARIABLE '=' expr = logical ';'                                #logicalAss
-    | VARIABLE '=' expr = arithmetics ';'                            #arithmeticsAss
-    | VARIABLE '=' STRING';'                                  #stringAss
-    | VARIABLE '=' CHAR ';'                                   #boolAss
+declaration
+    : 'int' VARIABLE '=' INT ';'                              #intDeclaration
+    | 'char' VARIABLE '=' CHAR ';'                            #charDeclaration
+    | 'string' VARIABLE '=' STRING ';'                        #stringDeclaration
+    | 'float' VARIABLE '=' FLOAT ';'                          #floatDeclaration
+    | 'bool' VARIABLE '=' BOOL ';'                            #boolDeclaration
     ;
 
+tempDeclaration
+    : 'int' VARIABLE '=' INT ';'
+    ;
+
+assignments
+    : VARIABLE '=' expr = arithmetics ';'                     #arithmeticsAssFor
+    | VARIABLE '=' expr = logical ';'                         #logicalAss
+    | VARIABLE '=' STRING';'                                  #stringAss
+    | VARIABLE '=' CHAR ';'                                   #charAss
+    ;
+assignmentsFor
+    : VARIABLE '=' expr = arithmetics                     #arithmeticsAss
+    ;
 arithmetics
     :   left=arithmetics op=('*'|'/'|'%') right=arithmetics   #opArithm
     |   left=arithmetics op=('+'|'-') right=arithmetics       #opArithm
@@ -83,21 +97,9 @@ print
     |   'print(' FLOAT ')' ';'                                #printFloat
     |   'print(' BOOL ')' ';'                                 #printBool
     |   'print(' CHAR ')' ';'                                 #printChar
-    |   'print(' VARIABLE ')' ';'                        #printVariable
+    |   'print(' VARIABLE ')' ';'                             #printVariable
     |   'print(' arithmetics ')' ';'                          #printArithmetics
     ;
-
-declaration
-    : 'int' VARIABLE '=' INT ';'                              #intDeclaration
-    | 'char' VARIABLE '=' CHAR ';'                            #charDeclaration
-    | 'string' VARIABLE '=' STRING ';'                        #stringDeclaration
-    | 'float' VARIABLE '=' FLOAT ';'                          #floatDeclaration
-    | 'bool' VARIABLE '=' BOOL ';'                            #boolDeclaration
-    ;
-
-
-
-
 
 conditionals
     :  'if' cond=logical '{' body=prog '}' (moreConditions=conditionalsExtend)?   #startIf
@@ -109,11 +111,12 @@ conditionalsExtend
     ;
 
 whileloop
-    : 'while' cond=logical '{' prog '}'
+    : 'while' cond=logical '{' body=prog '}'
     ;
 
-//forloop
-//    : 'for(' decl=declaration';'
+forloop
+    : 'for(' decl=tempDeclaration cond=logical ';' ass=assignmentsFor ')' '{' body = prog '}'
+    ;
 
 
 

@@ -1,6 +1,6 @@
-# Generated from MiniJava.g4 by ANTLR 4.11.1
+# Generated from C:/Users/admin/PycharmProjects/MiniJava/projekt/idea/MiniJava.g4 by ANTLR 4.13.1
 from antlr4 import *
-if __name__ is not None and "." in __name__:
+if "." in __name__:
     from .MiniJavaParser import MiniJavaParser
 else:
     from MiniJavaParser import MiniJavaParser
@@ -17,21 +17,75 @@ class MiniJavaListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MiniJavaParser#intDeclaration.
+    def enterIntDeclaration(self, ctx:MiniJavaParser.IntDeclarationContext):
+        pass
+
+    # Exit a parse tree produced by MiniJavaParser#intDeclaration.
+    def exitIntDeclaration(self, ctx:MiniJavaParser.IntDeclarationContext):
+        pass
+
+
+    # Enter a parse tree produced by MiniJavaParser#charDeclaration.
+    def enterCharDeclaration(self, ctx:MiniJavaParser.CharDeclarationContext):
+        pass
+
+    # Exit a parse tree produced by MiniJavaParser#charDeclaration.
+    def exitCharDeclaration(self, ctx:MiniJavaParser.CharDeclarationContext):
+        pass
+
+
+    # Enter a parse tree produced by MiniJavaParser#stringDeclaration.
+    def enterStringDeclaration(self, ctx:MiniJavaParser.StringDeclarationContext):
+        pass
+
+    # Exit a parse tree produced by MiniJavaParser#stringDeclaration.
+    def exitStringDeclaration(self, ctx:MiniJavaParser.StringDeclarationContext):
+        pass
+
+
+    # Enter a parse tree produced by MiniJavaParser#floatDeclaration.
+    def enterFloatDeclaration(self, ctx:MiniJavaParser.FloatDeclarationContext):
+        pass
+
+    # Exit a parse tree produced by MiniJavaParser#floatDeclaration.
+    def exitFloatDeclaration(self, ctx:MiniJavaParser.FloatDeclarationContext):
+        pass
+
+
+    # Enter a parse tree produced by MiniJavaParser#boolDeclaration.
+    def enterBoolDeclaration(self, ctx:MiniJavaParser.BoolDeclarationContext):
+        pass
+
+    # Exit a parse tree produced by MiniJavaParser#boolDeclaration.
+    def exitBoolDeclaration(self, ctx:MiniJavaParser.BoolDeclarationContext):
+        pass
+
+
+    # Enter a parse tree produced by MiniJavaParser#tempDeclaration.
+    def enterTempDeclaration(self, ctx:MiniJavaParser.TempDeclarationContext):
+        pass
+
+    # Exit a parse tree produced by MiniJavaParser#tempDeclaration.
+    def exitTempDeclaration(self, ctx:MiniJavaParser.TempDeclarationContext):
+        pass
+
+
+    # Enter a parse tree produced by MiniJavaParser#arithmeticsAssFor.
+    def enterArithmeticsAssFor(self, ctx:MiniJavaParser.ArithmeticsAssForContext):
+        pass
+
+    # Exit a parse tree produced by MiniJavaParser#arithmeticsAssFor.
+    def exitArithmeticsAssFor(self, ctx:MiniJavaParser.ArithmeticsAssForContext):
+        pass
+
+
     # Enter a parse tree produced by MiniJavaParser#logicalAss.
     def enterLogicalAss(self, ctx:MiniJavaParser.LogicalAssContext):
         pass
 
     # Exit a parse tree produced by MiniJavaParser#logicalAss.
     def exitLogicalAss(self, ctx:MiniJavaParser.LogicalAssContext):
-        pass
-
-
-    # Enter a parse tree produced by MiniJavaParser#arithmeticsAss.
-    def enterArithmeticsAss(self, ctx:MiniJavaParser.ArithmeticsAssContext):
-        pass
-
-    # Exit a parse tree produced by MiniJavaParser#arithmeticsAss.
-    def exitArithmeticsAss(self, ctx:MiniJavaParser.ArithmeticsAssContext):
         pass
 
 
@@ -44,12 +98,21 @@ class MiniJavaListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by MiniJavaParser#boolAss.
-    def enterBoolAss(self, ctx:MiniJavaParser.BoolAssContext):
+    # Enter a parse tree produced by MiniJavaParser#charAss.
+    def enterCharAss(self, ctx:MiniJavaParser.CharAssContext):
         pass
 
-    # Exit a parse tree produced by MiniJavaParser#boolAss.
-    def exitBoolAss(self, ctx:MiniJavaParser.BoolAssContext):
+    # Exit a parse tree produced by MiniJavaParser#charAss.
+    def exitCharAss(self, ctx:MiniJavaParser.CharAssContext):
+        pass
+
+
+    # Enter a parse tree produced by MiniJavaParser#arithmeticsAss.
+    def enterArithmeticsAss(self, ctx:MiniJavaParser.ArithmeticsAssContext):
+        pass
+
+    # Exit a parse tree produced by MiniJavaParser#arithmeticsAss.
+    def exitArithmeticsAss(self, ctx:MiniJavaParser.ArithmeticsAssContext):
         pass
 
 
@@ -269,51 +332,6 @@ class MiniJavaListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by MiniJavaParser#intDeclaration.
-    def enterIntDeclaration(self, ctx:MiniJavaParser.IntDeclarationContext):
-        pass
-
-    # Exit a parse tree produced by MiniJavaParser#intDeclaration.
-    def exitIntDeclaration(self, ctx:MiniJavaParser.IntDeclarationContext):
-        pass
-
-
-    # Enter a parse tree produced by MiniJavaParser#charDeclaration.
-    def enterCharDeclaration(self, ctx:MiniJavaParser.CharDeclarationContext):
-        pass
-
-    # Exit a parse tree produced by MiniJavaParser#charDeclaration.
-    def exitCharDeclaration(self, ctx:MiniJavaParser.CharDeclarationContext):
-        pass
-
-
-    # Enter a parse tree produced by MiniJavaParser#stringDeclaration.
-    def enterStringDeclaration(self, ctx:MiniJavaParser.StringDeclarationContext):
-        pass
-
-    # Exit a parse tree produced by MiniJavaParser#stringDeclaration.
-    def exitStringDeclaration(self, ctx:MiniJavaParser.StringDeclarationContext):
-        pass
-
-
-    # Enter a parse tree produced by MiniJavaParser#floatDeclaration.
-    def enterFloatDeclaration(self, ctx:MiniJavaParser.FloatDeclarationContext):
-        pass
-
-    # Exit a parse tree produced by MiniJavaParser#floatDeclaration.
-    def exitFloatDeclaration(self, ctx:MiniJavaParser.FloatDeclarationContext):
-        pass
-
-
-    # Enter a parse tree produced by MiniJavaParser#boolDeclaration.
-    def enterBoolDeclaration(self, ctx:MiniJavaParser.BoolDeclarationContext):
-        pass
-
-    # Exit a parse tree produced by MiniJavaParser#boolDeclaration.
-    def exitBoolDeclaration(self, ctx:MiniJavaParser.BoolDeclarationContext):
-        pass
-
-
     # Enter a parse tree produced by MiniJavaParser#startIf.
     def enterStartIf(self, ctx:MiniJavaParser.StartIfContext):
         pass
@@ -347,6 +365,15 @@ class MiniJavaListener(ParseTreeListener):
 
     # Exit a parse tree produced by MiniJavaParser#whileloop.
     def exitWhileloop(self, ctx:MiniJavaParser.WhileloopContext):
+        pass
+
+
+    # Enter a parse tree produced by MiniJavaParser#forloop.
+    def enterForloop(self, ctx:MiniJavaParser.ForloopContext):
+        pass
+
+    # Exit a parse tree produced by MiniJavaParser#forloop.
+    def exitForloop(self, ctx:MiniJavaParser.ForloopContext):
         pass
 
 

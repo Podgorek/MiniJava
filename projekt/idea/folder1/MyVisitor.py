@@ -7,6 +7,7 @@ class MyVisitor(MiniJavaVisitor):
 
     def __init__(self, variables):
         self.variables = variables
+        self.tempVariables = {}
 
 
     def visitProg(self, ctx:MiniJavaParser.ProgContext):
@@ -186,10 +187,64 @@ class MyVisitor(MiniJavaVisitor):
         name = ctx.getText().split("=")[0]
         if name in self.variables:
             self.variables[name][1] = var
+        else:
+            raise Exception("You must declare the variable first")
 
     def visitArithmeticsAss(self, ctx: MiniJavaParser.ArithmeticsAssContext):
         var = self.visit(ctx.expr)
         name = ctx.getText().split("=")[0]
         if name in self.variables:
             self.variables[name][1] = var
-        print(self.variables)
+        else:
+            raise Exception("You must declare the variable first")
+
+
+    def visitStringAss(self, ctx:MiniJavaParser.StringAssContext):
+        i = 0
+        name = ""
+        while ctx.getText()[i] != '=':
+            name += ctx.getText()[i]
+            i += 1
+        i += 2
+        var = ctx.getText()[i: -2]
+        if name in self.variables:
+            self.variables[name][1] = var
+        else:
+            raise Exception("You must declare the variable first")
+
+    def visitCharAss(self, ctx: MiniJavaParser.CharAssContext):
+        name = ctx.getText().split("=")
+        if len(name[1]) != 4:
+            raise Exception("You need to provide char")
+        if name[0] in self.variables:
+            self.variables[name[0]][1] = name[1][1:2]
+        else:
+            raise Exception("You must declare the variable first")
+
+    def visitForloop(self, ctx:MiniJavaParser.ForloopContext):
+        old = self.visit(ctx.decl)
+        while self.visit(ctx.cond):
+            self.visit(ctx.body)
+            self.visit(ctx.ass)
+        if len(old) == 1:
+            del self.variables[old[0]]
+            del self.tempVariables[old[0]]
+        else:
+            self.variables[old[0]][1] = old[1]
+            del self.tempVariables[old[0]]
+
+
+    def visitTempDeclaration(self, ctx:MiniJavaParser.TempDeclarationContext):
+        name = ctx.getText().split("int")[1].split("=")
+        if not name[0] in self.tempVariables:
+            self.tempVariables[name[0]] = ["int", int(name[1][0])]
+        else:
+            raise Exception("Declared twice variable inside scope")
+        if name[0] in self.variables:
+            old = self.variables[name[0]][1]
+            self.variables[name[0]][1] = int(name[1][0])
+            return [name[0], old]
+        else:
+            self.variables[name[0]] = ["int", int(name[1][0])]
+            return [name[0]]
+

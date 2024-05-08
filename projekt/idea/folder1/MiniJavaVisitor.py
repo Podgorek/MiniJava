@@ -1,6 +1,6 @@
-# Generated from MiniJava.g4 by ANTLR 4.11.1
+# Generated from C:/Users/admin/PycharmProjects/MiniJava/projekt/idea/MiniJava.g4 by ANTLR 4.13.1
 from antlr4 import *
-if __name__ is not None and "." in __name__:
+if "." in __name__:
     from .MiniJavaParser import MiniJavaParser
 else:
     from MiniJavaParser import MiniJavaParser
@@ -14,13 +14,43 @@ class MiniJavaVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MiniJavaParser#logicalAss.
-    def visitLogicalAss(self, ctx:MiniJavaParser.LogicalAssContext):
+    # Visit a parse tree produced by MiniJavaParser#intDeclaration.
+    def visitIntDeclaration(self, ctx:MiniJavaParser.IntDeclarationContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MiniJavaParser#arithmeticsAss.
-    def visitArithmeticsAss(self, ctx:MiniJavaParser.ArithmeticsAssContext):
+    # Visit a parse tree produced by MiniJavaParser#charDeclaration.
+    def visitCharDeclaration(self, ctx:MiniJavaParser.CharDeclarationContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MiniJavaParser#stringDeclaration.
+    def visitStringDeclaration(self, ctx:MiniJavaParser.StringDeclarationContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MiniJavaParser#floatDeclaration.
+    def visitFloatDeclaration(self, ctx:MiniJavaParser.FloatDeclarationContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MiniJavaParser#boolDeclaration.
+    def visitBoolDeclaration(self, ctx:MiniJavaParser.BoolDeclarationContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MiniJavaParser#tempDeclaration.
+    def visitTempDeclaration(self, ctx:MiniJavaParser.TempDeclarationContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MiniJavaParser#arithmeticsAssFor.
+    def visitArithmeticsAssFor(self, ctx:MiniJavaParser.ArithmeticsAssForContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MiniJavaParser#logicalAss.
+    def visitLogicalAss(self, ctx:MiniJavaParser.LogicalAssContext):
         return self.visitChildren(ctx)
 
 
@@ -29,8 +59,13 @@ class MiniJavaVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MiniJavaParser#boolAss.
-    def visitBoolAss(self, ctx:MiniJavaParser.BoolAssContext):
+    # Visit a parse tree produced by MiniJavaParser#charAss.
+    def visitCharAss(self, ctx:MiniJavaParser.CharAssContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MiniJavaParser#arithmeticsAss.
+    def visitArithmeticsAss(self, ctx:MiniJavaParser.ArithmeticsAssContext):
         return self.visitChildren(ctx)
 
 
@@ -154,31 +189,6 @@ class MiniJavaVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MiniJavaParser#intDeclaration.
-    def visitIntDeclaration(self, ctx:MiniJavaParser.IntDeclarationContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniJavaParser#charDeclaration.
-    def visitCharDeclaration(self, ctx:MiniJavaParser.CharDeclarationContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniJavaParser#stringDeclaration.
-    def visitStringDeclaration(self, ctx:MiniJavaParser.StringDeclarationContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniJavaParser#floatDeclaration.
-    def visitFloatDeclaration(self, ctx:MiniJavaParser.FloatDeclarationContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MiniJavaParser#boolDeclaration.
-    def visitBoolDeclaration(self, ctx:MiniJavaParser.BoolDeclarationContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by MiniJavaParser#startIf.
     def visitStartIf(self, ctx:MiniJavaParser.StartIfContext):
         return self.visitChildren(ctx)
@@ -196,6 +206,11 @@ class MiniJavaVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by MiniJavaParser#whileloop.
     def visitWhileloop(self, ctx:MiniJavaParser.WhileloopContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MiniJavaParser#forloop.
+    def visitForloop(self, ctx:MiniJavaParser.ForloopContext):
         return self.visitChildren(ctx)
 
 
