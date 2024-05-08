@@ -198,6 +198,13 @@ class MyVisitor(MiniJavaVisitor):
         else:
             raise Exception("You must declare the variable first")
 
+    def visitArithmeticsAssFor(self, ctx: MiniJavaParser.ArithmeticsAssContext):
+        var = self.visit(ctx.expr)
+        name = ctx.getText().split("=")[0]
+        if name in self.variables:
+            self.variables[name][1] = var
+        else:
+            raise Exception("You must declare the variable first")
 
     def visitStringAss(self, ctx:MiniJavaParser.StringAssContext):
         i = 0
@@ -248,3 +255,7 @@ class MyVisitor(MiniJavaVisitor):
             self.variables[name[0]] = ["int", int(name[1][0])]
             return [name[0]]
 
+    def visitWhileloop(self, ctx:MiniJavaParser.WhileloopContext):
+        if self.visit(ctx.cond):
+            self.visit(ctx.body)
+            self.visit(ctx)
