@@ -1,6 +1,7 @@
 grammar MiniJava;
 
-prog:   (arithmetics | print | logical | declaration | conditionals | assignments | forloop)* ;
+prog:   (arithmetics | print | logical | declaration | conditionals
+                     | assignments | forloop | whileloop)* ;
 
 
 LPAREN     : '(';
@@ -58,14 +59,16 @@ tempDeclaration
     ;
 
 assignments
-    : VARIABLE '=' expr = arithmetics ';'                     #arithmeticsAssFor
+    : VARIABLE '=' expr = arithmetics ';'                     #arithmeticsAss
     | VARIABLE '=' expr = logical ';'                         #logicalAss
     | VARIABLE '=' STRING';'                                  #stringAss
     | VARIABLE '=' CHAR ';'                                   #charAss
     ;
+
 assignmentsFor
-    : VARIABLE '=' expr = arithmetics                     #arithmeticsAss
+    : VARIABLE '=' expr = arithmetics                     #arithmeticsAssFor
     ;
+
 arithmetics
     :   left=arithmetics op=('*'|'/'|'%') right=arithmetics   #opArithm
     |   left=arithmetics op=('+'|'-') right=arithmetics       #opArithm
@@ -117,20 +120,3 @@ whileloop
 forloop
     : 'for(' decl=tempDeclaration cond=logical ';' ass=assignmentsFor ')' '{' body = prog '}'
     ;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
