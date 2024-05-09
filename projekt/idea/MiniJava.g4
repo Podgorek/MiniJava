@@ -47,11 +47,13 @@ CHAR    : '\''[a-zA-Z0-9]'\'';
 VARIABLE : [a-zA-Z]+;
 
 declaration
-    : 'int' VARIABLE '=' INT ';'                              #intDeclaration
-    | 'char' VARIABLE '=' CHAR ';'                            #charDeclaration
+//    : 'int' VARIABLE '=' INT ';'                              #intDeclaration
+    : 'char' VARIABLE '=' CHAR ';'                            #charDeclaration
     | 'string' VARIABLE '=' STRING ';'                        #stringDeclaration
-    | 'float' VARIABLE '=' FLOAT ';'                          #floatDeclaration
+//    | 'float' VARIABLE '=' FLOAT ';'                          #floatDeclaration
     | 'bool' VARIABLE '=' BOOL ';'                            #boolDeclaration
+    | 'int' VARIABLE '=' expr=arithmetics ';'                      #arithmeticsIntDeclaration
+    | 'float' VARIABLE '=' expr=arithmetics ';'                    #arithmeticsFloatDeclaration
     ;
 
 tempDeclaration
@@ -114,9 +116,25 @@ conditionalsExtend
     ;
 
 whileloop
-    : 'while' cond=logical '{' body=prog '}'
+    : 'while(' cond=logical '){' body=prog '}'
     ;
 
 forloop
-    : 'for(' decl=tempDeclaration cond=logical ';' ass=assignmentsFor ')' '{' body = prog '}'
+    : 'for(' decl=tempDeclaration cond=logical ';' ass=assignmentsFor '){' body = prog '}'
     ;
+
+return
+    : 'return' VARIABLE ';'                                 #returnVariable
+    | 'return' BOOL ';'                                     #returnBool
+    | 'return' CHAR ';'                                     #returnChar
+    | 'return' STRING';'                                     #returnString
+    | 'return' FLOAT';'                                      #returnFloat
+    | 'return' INT';'                                       #returnInt
+    | 'return' arithmetics';'                               #returnArtihmetics
+    | 'return' logical ';'                                  #returnLogical
+    ;
+
+//function
+//    : ('bool'|'string'|'float'|'int'|'char') name=VARIABLE'('')''{' (body=prog|ret=return)+ '}'
+//    | 'void' name=VARIABLE'(' ')' '{' body = prog '}'
+//    ;
