@@ -107,8 +107,8 @@ class MyVisitor(MiniJavaVisitor):
     def visitPrintChar(self, ctx:MiniJavaParser.PrintCharContext):
         print(ctx.CHAR())
 
-    def visitIntDeclaration(self, ctx:MiniJavaParser.IntDeclarationContext):
-        return self.visitChildren(ctx)
+    # def visitIntDeclaration(self, ctx:MiniJavaParser.IntDeclarationContext):
+    #     return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by MiniJavaParser#charDeclaration.
@@ -122,8 +122,8 @@ class MyVisitor(MiniJavaVisitor):
 
 
     # Visit a parse tree produced by MiniJavaParser#floatDeclaration.
-    def visitFloatDeclaration(self, ctx:MiniJavaParser.FloatDeclarationContext):
-        return self.visitChildren(ctx)
+    # def visitFloatDeclaration(self, ctx:MiniJavaParser.FloatDeclarationContext):
+    #     return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by MiniJavaParser#boolDeclaration.
@@ -244,7 +244,7 @@ class MyVisitor(MiniJavaVisitor):
     def visitTempDeclaration(self, ctx:MiniJavaParser.TempDeclarationContext):
         name = ctx.getText().split("int")[1].split("=")
         if not name[0] in self.tempVariables:
-            self.tempVariables[name[0]] = ["int", int(name[1][0])]
+            self.tempVariables[name[0]] = ["int", int(name[1][:-1])]
         else:
             raise Exception("Declared twice variable inside scope")
         if name[0] in self.variables:
@@ -252,10 +252,26 @@ class MyVisitor(MiniJavaVisitor):
             self.variables[name[0]][1] = int(name[1][0])
             return [name[0], old]
         else:
-            self.variables[name[0]] = ["int", int(name[1][0])]
+            self.variables[name[0]] = ["int", int(name[1][:-1])]
             return [name[0]]
 
     def visitWhileloop(self, ctx:MiniJavaParser.WhileloopContext):
         if self.visit(ctx.cond):
             self.visit(ctx.body)
             self.visit(ctx)
+
+    def visitArithmeticsIntDeclaration(self, ctx:MiniJavaParser.ArithmeticsIntDeclarationContext):
+        val = int(self.visit(ctx.expr))
+        name = ctx.getText().split("int")[1].split("=")[0]
+        if name not in self.variables:
+            self.variables[name] = ["int", val]
+        else:
+            raise Exception("Double declaration")
+
+    def visitArithmeticsFloatDeclaration(self, ctx:MiniJavaParser.ArithmeticsFloatDeclarationContext):
+        val = float(self.visit(ctx.expr))
+        name = ctx.getText().split("float")[1].split("=")[0]
+        if name not in self.variables:
+            self.variables[name] = ["float", val]
+        else:
+            raise Exception("Double declaration")
