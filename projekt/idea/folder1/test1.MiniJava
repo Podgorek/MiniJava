@@ -1,0 +1,9 @@
+int fib(int a, int b){
+    int i = 5;
+    while (i>0){
+        print(i);
+        i = i -1;
+    }
+}
+
+fib(5, 4);
